@@ -13,9 +13,37 @@ public class Panel extends JPanel {
     private JButton numbers[] = new JButton[10];
     private Font font = new Font("SanSerif", Font.BOLD,20);
     private JTextField output = new JTextField();
+    private JButton backspace = new JButton("<"), equ = new JButton("=");
+    private JButton plus = new JButton("+"), minus = new JButton("-"),multi = new JButton("*"), div = new JButton("/");
+
+
 
     public Panel(){
         setLayout(null);
+
+        backspace.setBounds(10,250,51,50);
+        backspace.setFont(font);
+        add(backspace);
+
+        plus.setBounds(190,70,51,50);
+        plus.setFont(font);
+        add(plus);
+
+        minus.setBounds(190,130,51,50);
+        minus.setFont(font);
+        add(minus);
+
+        multi.setBounds(190,190,51,50);
+        multi.setFont(font);
+        add(multi);
+
+        div.setBounds(190,250,51,50);
+        div.setFont(font);
+        add(div);
+
+        equ.setBounds(130,250,51,50);
+        equ.setFont(font);
+        add(equ);
 
         numbers[0] = new JButton( "0");
         numbers[0].setBounds(70, 250, 50, 50);
