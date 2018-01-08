@@ -15,6 +15,8 @@ public class Panel extends JPanel {
     private JTextField output = new JTextField();
     private JButton backspace = new JButton("<"), equ = new JButton("=");
     private JButton plus = new JButton("+"), minus = new JButton("-"),multi = new JButton("*"), div = new JButton("/");
+    int firstValue = 0;
+    String operation = "+";
 
 
 
@@ -72,6 +74,73 @@ public class Panel extends JPanel {
         for (JButton b :  numbers){
             b.addActionListener(l);
         }
+
+        backspace.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              String temp = output.getText();
+              output.setText(temp.substring(0,temp.length()-1));
+            }
+        });
+
+        plus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              firstValue = Integer.valueOf(output.getText());
+              output.setText("");
+              operation = "+";
+            }
+        });
+
+        multi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+             firstValue = Integer.valueOf(output.getText());
+             output.setText("");
+             operation = "*";
+            }
+        });
+
+        div.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                firstValue = Integer.valueOf(output.getText());
+                output.setText("");
+                operation = "/";
+            }
+        });
+
+        minus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                firstValue = Integer.valueOf(output.getText());
+                output.setText("");
+                operation = "-";
+            }
+        });
+
+        equ.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int secondValue = Integer.valueOf(output.getText());
+                if("+".equals(operation)){
+                    output.setText((firstValue+secondValue)+"");
+                }
+                if("-".equals(operation)){
+                    output.setText((firstValue-secondValue)+"");
+                }
+                if("*".equals(operation)){
+                    output.setText((firstValue*secondValue)+"");
+                }
+                if("/".equals(operation)){
+                    output.setText((firstValue/secondValue)+"");
+                }
+                firstValue = 0;
+                operation = "+";
+            }
+        });
+
+
     }
 
 }
